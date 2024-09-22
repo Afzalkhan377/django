@@ -43,7 +43,6 @@ def show_all(request):
 # View for the about page
 def about(request):
     context = {
-        'biography': "Steve Jobs was the founder of APPLE and one of the most influential entrepreneur",
-        'creator': "Afzal Khan - Developer of this Django application."
+        'biography': "Steve Jobs was the founder of Apple and one of the most influential entrepreneur",
     }
     return render(request, 'quoteapp/about.html', context)
