@@ -1,0 +1,146 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Navigation Menu */
+nav {
+    background-color: #444;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Container for Main Content */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Quote Section */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 20px;
+    color: #555;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.quote-box {
+    text-align: center;
+}
+
+/* Show All Section */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-left: 5px solid #333;
+    font-size: 18px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* About Section */
+.about h2 {
+    margin-top: 20px;
+    text-align: left;
+    color: #444;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Image Grid for Show All */
+.images-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.images-grid img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    nav a {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    ul li {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .images-grid img {
+        max-width: 120px;
+    }
+}
