@@ -1,0 +1,21 @@
+{% extends 'quoteapp/base.html' %}
+
+{% block title %}All Quotes{% endblock %}
+
+{% block content %}
+    <h2>All Quotes</h2>
+    <ul>
+        {% for quote in quotes %}
+            <li>{{ quote }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>All Images</h2>
+    <div>
+        {% load static %}
+        {% for image in images %}
+        {% load static %}
+        <img src="{% static image %}" alt="quote image">
+        {% endfor %}
+    </div>
+{% endblock %}

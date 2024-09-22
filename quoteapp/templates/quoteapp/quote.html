@@ -1,0 +1,11 @@
+{% extends 'quoteapp/base.html' %}
+
+{% block title %}Quote of the Day{% endblock %}
+
+{% block content %}
+    <div>
+        {% load static %}
+        <img src="{% static image %}" alt="quote image">
+        <p>{{ quote }}</p>
+    </div>
+{% endblock %}
