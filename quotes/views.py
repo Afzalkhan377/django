@@ -30,7 +30,7 @@ def quote(request):
         'quote': selected_quote,
         'image': selected_image
     }
-    return render(request, 'quoteapp/quote.html', context)
+    return render(request, 'quotes/quote.html', context)
 
 # View to show all quotes and images
 def show_all(request):
@@ -38,11 +38,11 @@ def show_all(request):
         'quotes': QUOTES,
         'images': IMAGES
     }
-    return render(request, 'quoteapp/show_all.html', context)
+    return render(request, 'quotes/show_all.html', context)
 
 # View for the about page
 def about(request):
     context = {
         'biography': "Steve Jobs was the founder of Apple and one of the most influential entrepreneur",
     }
-    return render(request, 'quoteapp/about.html', context)
+    return render(request, 'quotes/about.html', context)
