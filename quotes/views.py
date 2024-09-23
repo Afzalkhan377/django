@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import random
 
-# Hardcoded list of quotes and image URLs
+
 QUOTES = [
     "The only way to do great work is to love what you do. – Steve Jobs",
     "Innovation distinguishes between a leader and a follower. – Steve Jobs",
@@ -12,7 +12,6 @@ QUOTES = [
 ]
 
 IMAGES = [
-      # Replace with actual image URLs or paths
     "images/SteveJobs1.jpg",
     "images/SteveJobs2.jpg",
 "images/SteveJobs3.jpg",

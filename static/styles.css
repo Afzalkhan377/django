@@ -3,13 +3,13 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffefd5; /* Light Peach Background */
+    background-color: #ffefd5;
     line-height: 1.6;
 }
 
 /* Header Styles */
 header {
-    background-color: #ff6347; /* Tomato Red */
+    background-color: #ff6347; 
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -20,7 +20,7 @@ header {
 
 /* Navigation Menu */
 nav {
-    background-color: #4682b4; /* Steel Blue */
+    background-color: #4682b4; 
     padding: 10px;
     text-align: center;
 }
@@ -34,7 +34,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #ff4500; /* OrangeRed on Hover */
+    color: #ff4500; 
     text-decoration: underline;
 }
 
@@ -43,7 +43,7 @@ nav a:hover {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff8dc; /* Cornsilk Background */
+    background-color: #fff8dc; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -58,7 +58,7 @@ img {
 
 p {
     font-size: 20px;
-    color: #2e8b57; /* Sea Green Text */
+    color: #2e8b57; 
     text-align: center;
     margin: 10px 0;
 }
@@ -74,16 +74,16 @@ ul {
 }
 
 ul li {
-    background: #f0e68c; /* Khaki Background */
+    background: #f0e68c; 
     padding: 10px;
     margin: 5px 0;
-    border-left: 5px solid #ff6347; /* Tomato Red Border */
+    border-left: 5px solid #ff6347; 
     font-size: 18px;
 }
 
 h2 {
     text-align: center;
-    color: #8b0000; /* Dark Red */
+    color: #8b0000; 
     margin-bottom: 20px;
 }
 
@@ -91,14 +91,14 @@ h2 {
 .about h2 {
     margin-top: 20px;
     text-align: left;
-    color: #4682b4; /* Steel Blue */
+    color: #4682b4; 
 }
 
 /* Footer Styles */
 footer {
     text-align: center;
     padding: 10px 0;
-    background-color: #ff6347; /* Tomato Red */
+    background-color: #ff6347; 
     color: white;
     margin-top: 20px;
     font-size: 14px;
