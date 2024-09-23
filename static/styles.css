@@ -3,14 +3,14 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #ffefd5; /* Light Peach Background */
     line-height: 1.6;
 }
 
 /* Header Styles */
 header {
-    background-color: #333;
-    color: white;
+    background-color: #ff6347; /* Tomato Red */
+    color: #fff;
     padding: 20px;
     text-align: center;
     font-size: 30px;
@@ -20,13 +20,13 @@ header {
 
 /* Navigation Menu */
 nav {
-    background-color: #444;
+    background-color: #4682b4; /* Steel Blue */
     padding: 10px;
     text-align: center;
 }
 
 nav a {
-    color: white;
+    color: #fff;
     margin: 0 15px;
     text-decoration: none;
     font-size: 18px;
@@ -34,6 +34,7 @@ nav a {
 }
 
 nav a:hover {
+    color: #ff4500; /* OrangeRed on Hover */
     text-decoration: underline;
 }
 
@@ -42,9 +43,9 @@ nav a:hover {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: #fff8dc; /* Cornsilk Background */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Quote Section */
@@ -57,7 +58,7 @@ img {
 
 p {
     font-size: 20px;
-    color: #555;
+    color: #2e8b57; /* Sea Green Text */
     text-align: center;
     margin: 10px 0;
 }
@@ -73,16 +74,16 @@ ul {
 }
 
 ul li {
-    background: #f9f9f9;
+    background: #f0e68c; /* Khaki Background */
     padding: 10px;
     margin: 5px 0;
-    border-left: 5px solid #333;
+    border-left: 5px solid #ff6347; /* Tomato Red Border */
     font-size: 18px;
 }
 
 h2 {
     text-align: center;
-    color: #333;
+    color: #8b0000; /* Dark Red */
     margin-bottom: 20px;
 }
 
@@ -90,14 +91,14 @@ h2 {
 .about h2 {
     margin-top: 20px;
     text-align: left;
-    color: #444;
+    color: #4682b4; /* Steel Blue */
 }
 
 /* Footer Styles */
 footer {
     text-align: center;
     padding: 10px 0;
-    background-color: #333;
+    background-color: #ff6347; /* Tomato Red */
     color: white;
     margin-top: 20px;
     font-size: 14px;
@@ -115,7 +116,7 @@ footer {
     max-width: 150px;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
@@ -144,3 +145,4 @@ footer {
         max-width: 120px;
     }
 }
+
