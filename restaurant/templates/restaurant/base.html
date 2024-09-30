@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shahs Halal</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'restaurant/style.css' %}"alt="Restaurant Photo">
+
+</head>
+<body>
+    <header>
+        <h1>SHAHS HALAL</h1>
+        <nav>
+            <a href="{% url 'main' %}">Main</a>
+            <a href="{% url 'order' %}">Order</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

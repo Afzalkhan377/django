@@ -1,0 +1,114 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+    <h2>Place Your Order</h2>
+    <form method="post" action="{% url 'confirmation' %}">
+        {% csrf_token %}
+
+        <h3>Menu Items:</h3>
+        <ul>
+            <li>
+                <input type="checkbox" class="menu-item" name="chicken_over_rice" value="Chicken Over Rice">
+                Chicken Over Rice - $10.99
+                <input type="hidden" name="chicken_over_rice_price" value="10.99">
+                Quantity: 
+                <input type="number" name="chicken_over_rice_qty" value="1" min="1" max="10">
+            </li>
+            <li>
+                <input type="checkbox" class="menu-item" name="lamb_over_rice" value="Lamb Over Rice">
+                Lamb Over Rice - $10.99
+                <input type="hidden" name="lamb_over_rice_price" value="10.99">
+                Quantity: 
+                <input type="number" name="lamb_over_rice_qty" value="1" min="1" max="10">
+            </li>
+            <li>
+                <input type="checkbox" class="menu-item" name="combo_over_rice" value="Combo Over Rice">
+                Combo Over Rice - $11.99
+                <input type="hidden" name="combo_over_rice_price" value="11.99">
+                Quantity: 
+                <input type="number" name="combo_over_rice_qty" value="1" min="1" max="10">
+            </li>
+            <li>
+                <input type="checkbox" class="menu-item" name="daily_special" value="{{ daily_special.name }}">
+                {{ daily_special.name }} (Daily Special) - ${{ daily_special.price }}
+                <input type="hidden" name="daily_special_price" value="{{ daily_special.price }}">
+                Quantity: 
+                <input type="number" name="daily_special_qty" value="1" min="1" max="10">
+            </li>
+        </ul>
+
+        <!-- Toppings/Extras for one item -->
+        <h3>Toppings for Combo Over Rice (Optional):</h3>
+        <ul>
+            <li>
+                <input type="checkbox" class="extra" name="white_sauce" value="White Sauce" disabled> White Sauce - $1.50
+                <input type="hidden" name="white_sauce_price" value="1.50">
+                Quantity: 
+                <input type="number" class="extra-qty" name="white_sauce_qty" value="1" min="0" max="10" disabled>
+            </li>
+            <li>
+                <input type="checkbox" class="extra" name="bbq_sauce" value="BBQ Sauce" disabled> BBQ Sauce - $1.50
+                <input type="hidden" name="bbq_sauce_price" value="1.50">
+                Quantity: 
+                <input type="number" class="extra-qty" name="bbq_sauce_qty" value="1" min="0" max="10" disabled>
+            </li>
+            <li>
+                <input type="checkbox" class="extra" name="mint_sauce" value="Mint Sauce" disabled> Mint Sauce - $1.50
+                <input type="hidden" name="mint_sauce_price" value="1.50">
+                Quantity: 
+                <input type="number" class="extra-qty" name="mint_sauce_qty" value="1" min="0" max="10" disabled>
+            </li>
+        </ul>
+
+        <!-- Special Instructions -->
+        <p>Special Instructions:</p>
+        <textarea name="instructions" placeholder="Any special requests?"></textarea>
+
+        <!-- Customer Information -->
+        <h3>Customer Information:</h3>
+        <p>Name:</p>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <p>Phone:</p>
+        <input type="text" name="phone" placeholder="Phone Number" required>
+        <p>Email:</p>
+        <input type="email" name="email" placeholder="Email Address" required>
+
+        <button type="submit">Place Order</button>
+    </form>
+
+    <!-- JavaScript to Enable/Disable Extras Based on Menu Item Selection -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const extras = document.querySelectorAll('.extra');
+            const extraQuantities = document.querySelectorAll('.extra-qty');
+
+            function toggleExtras() {
+                let isAnyMenuItemSelected = false;
+
+                // Check if any menu item is selected
+                menuItems.forEach(item => {
+                    if (item.checked) {
+                        isAnyMenuItemSelected = true;
+                    }
+                });
+
+                // Enable or disable extras based on whether a menu item is selected
+                extras.forEach(extra => {
+                    extra.disabled = !isAnyMenuItemSelected;
+                });
+                extraQuantities.forEach(extraQty => {
+                    extraQty.disabled = !isAnyMenuItemSelected;
+                });
+            }
+
+            // Add event listeners to menu items
+            menuItems.forEach(item => {
+                item.addEventListener('change', toggleExtras);
+            });
+
+            // Initially check the state when the page loads
+            toggleExtras();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Welcome to Our Restaurant</h2>
+<p>Location: 123 Main St</p>
+<p>Hours of Operation:</p>
+<ul>
+    <li>Monday-Friday: 10am - 9pm</li>
+    <li>Saturday-Sunday: 11am - 10pm</li>
+</ul>
+<img src="{% static 'restaurant/SHAHS-HALAL.png' %}" alt="Restaurant Photo">
+{% endblock %}

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-o)@22%_*ga-s49zgi1+%=pu@-4hma42s!amngr__*kgx$wjuay
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['django-w2ob.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['django-w2ob.onrender.com', '127.0.0.1','*']
 
 
 # Application definition
@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'quotes'
+    'quotes',
+    'restaurant',
+    
 ]
 
 MIDDLEWARE = [
@@ -116,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
