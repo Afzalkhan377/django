@@ -1,0 +1,33 @@
+{# 
+    Afzal Khan
+    afzalk@bu.edu
+    Description: This is the base template for the Mini FB application. It defines the overall structure 
+                 of the HTML pages, including links to CSS files. 
+    #}
+    
+    {% load static %} {# Load static files like CSS, images, and JavaScript #}
+    
+    <html lang="en">
+    <head>
+        <title>Mini FB</title> {# Page title #}
+        
+        {# Link to the CSS file for styling the webpage #}
+        <link rel="stylesheet" href="{% static 'mini_fb/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Mini FB</h1> {# Header section #}
+        </header>
+    
+        <main>
+            {# Block where child templates can insert content #}
+            {% block content %}
+            {% endblock %}
+        </main>
+    
+        <footer>
+            <p>&copy; 2024 Mini FB</p> {# Footer #}
+        </footer>
+    </body>
+    </html>
+    
