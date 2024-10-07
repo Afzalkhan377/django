@@ -1,3 +1,8 @@
+"""
+Afzal Khan
+afzalk@bu.edu
+Description: This file defines the Profile model and includes fields for first name, last name, city, email, and profile image URL.
+"""
 from django.db import models
 
 

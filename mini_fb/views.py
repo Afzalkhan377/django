@@ -1,5 +1,13 @@
+"""
+Afzal Khan
+afzalk@bu.edu
+Description: It includes the ShowAllProfilesView which displays all profile records from the database.
+"""
+
+
 from django.views.generic import ListView
 from .models import Profile
+
 
 class ShowAllProfilesView(ListView):
     model = Profile
