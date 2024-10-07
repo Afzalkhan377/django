@@ -1,1 +1,1 @@
-web: gunicorn hw.wsgi --log-file -
+web: gunicorn cs412.wsgi --log-file -
