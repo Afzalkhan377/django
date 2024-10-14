@@ -12,10 +12,15 @@
         
      
         <link rel="stylesheet" href="{% static 'mini_fb/styles.css' %}">
+        
     </head>
     <body>
         <header>
-            <h1>Mini FB</h1> 
+            <h1>Mini FB</h1>
+            <nav>
+                <a href="{% url 'show_all_profiles' %}">All Profiles</a> |
+                <a href="{% url 'create_profile' %}">Create a New Profile</a>
+            </nav>
         </header>
     
         <main>
