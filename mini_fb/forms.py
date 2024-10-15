@@ -17,10 +17,11 @@ class CreateProfileForm(forms.ModelForm):
     last_name = forms.CharField(label="Last Name", required=True)
     city = forms.CharField(label="City", required=True)
     birth_date = forms.DateField(widget=forms.SelectDateWidget(years=range(2024, 1920, -1)), label="Birth Date")
+    email = forms.EmailField(label="Email", required=True)  # Added email field
 
     class Meta:
         model = Profile 
-        fields = ['first_name', 'last_name', 'city', 'birth_date', 'profile_image_url']
+        fields = ['first_name', 'last_name', 'city', 'birth_date','email', 'profile_image_url']
 
 class CreateStatusMessageForm(forms.ModelForm):
     # Form for creating a new StatusMessage. It allows users to input a message that will be linked to a profile.
