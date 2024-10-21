@@ -44,52 +44,52 @@ footer {
     color: #888;
 }
 
-/* Styling for the green box that contains the buttons */
+
 .button-container {
-    background-color: #4CAF50; /* Green background for the box */
+    background-color: #4CAF50; 
     padding: 20px;
     border-radius: 10px;
     margin: 20px 0;
-    text-align: center; /* Center-align the buttons */
+    text-align: center;
 }
 
-/* Styling for the buttons */
+
 a.button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: white; /* White background for the button */
-    color: #4CAF50; /* Green text color for the button */
+    background-color: white; 
+    color: #4CAF50; 
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    margin-right: 10px; /* Space between buttons */
+    margin-right: 10px; 
     transition: background-color 0.3s ease;
 }
 
 a.button:hover {
-    background-color: #f2f2f2; /* Light grey on hover */
+    background-color: #f2f2f2; 
 }
-/* Button styling for the delete and update links */
+
 a.button {
     display: inline-block;
     padding: 8px 15px;
-    background-color: #4CAF50; /* Green background */
+    background-color: #4CAF50; 
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    margin-right: 10px; /* Space between buttons */
+    margin-right: 10px; 
     transition: background-color 0.3s ease;
 }
 
 a.button:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049; 
 }
 
 a.button-danger {
-    background-color: #f44336; /* Red background for delete button */
+    background-color: #f44336; 
 }
 
 a.button-danger:hover {
-    background-color: #e53935; /* Darker red on hover */
+    background-color: #e53935; 
 }
