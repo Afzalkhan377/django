@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color:#f9f9f9;
+}
+
+header {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+img {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* Styling for the green box that contains the buttons */
+.button-container {
+    background-color: #4CAF50; /* Green background for the box */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: center; /* Center-align the buttons */
+}
+
+/* Styling for the buttons */
+a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white; /* White background for the button */
+    color: #4CAF50; /* Green text color for the button */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-right: 10px; /* Space between buttons */
+    transition: background-color 0.3s ease;
+}
+
+a.button:hover {
+    background-color: #f2f2f2; /* Light grey on hover */
+}
+/* Button styling for the delete and update links */
+a.button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-right: 10px; /* Space between buttons */
+    transition: background-color 0.3s ease;
+}
+
+a.button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+a.button-danger {
+    background-color: #f44336; /* Red background for delete button */
+}
+
+a.button-danger:hover {
+    background-color: #e53935; /* Darker red on hover */
+}

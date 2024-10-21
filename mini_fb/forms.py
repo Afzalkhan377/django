@@ -4,6 +4,7 @@ afzalk@bu.edu
 Description: This file defines the forms for creating a new Profile and StatusMessage in the mini_fb app. 
 The CreateProfileForm allows users to enter profile details, including first name, last name, city, birth date, and profile image URL.
 The CreateStatusMessageForm allows users to create and submit a status message.
+the updateprofileform allows user to update their email,image, location
 """
 
 from django import forms
@@ -28,3 +29,10 @@ class CreateStatusMessageForm(forms.ModelForm):
     class Meta:
         model = StatusMessage
         fields = ['message'] 
+
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        # Exclude first_name and last_name from the fields that can be updated
+        fields = ['profile_image_url', 'city', 'email']
+

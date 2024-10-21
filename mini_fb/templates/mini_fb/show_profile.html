@@ -15,12 +15,36 @@
     <ul>
         {% for status in profile.get_status_messages %}
             <li><strong>{{ status.timestamp }}</strong>: {{ status.message }}</li>
+            
+            <!-- Display images for this status message if they exist -->
+            {% if status.get_images %}
+                <div class="status-images">
+                    {% for img in status.get_images %}
+                        <img src="{{ img.image_file.url }}" alt="Image for {{ status.message }}" width="200">
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% empty %}
             <p>No status messages.</p>
         {% endfor %}
     </ul>
+  
+    <h2>Status Messages</h2>
+    <ul>
+        {% for st_msg in profile.get_status_messages %}
+            <li>{{ st_msg.timestamp }}: {{ st_msg.message }}
+                {% for img in st_msg.get_images %}
+                    <img src="{{ img.image_file.url }}" alt="Status Image" style="max-width: 100px;">
+                    
+                {% endfor %}
+                <a href="{% url 'delete_status' st_msg.pk %}" class="button button-danger">Delete</a>
+                <a href="{% url 'update_status' st_msg.pk %}" class="button">Update</a>
+            </li>
+        {% endfor %}
+    </ul>
     
-    <a href="{% url 'create_status' profile.pk %}">Post a Status Message</a>
-
-    
+<div class="button-container">
+    <a href="{% url 'create_status' profile.pk %}" class="button">Post a Status Message</a>
+    <a href="{% url 'update_profile' profile.pk %}" class="button">Update Profile</a>
+</div>
 {% endblock %}

@@ -4,11 +4,11 @@ afzalk@bu.edu
 Description: This file contains Django class-based views for managing profile pages and status messages .
 It includes views to display all profiles, individual profile pages, and forms for creating profiles and posting status messages.
 """
-
-from django.views.generic import ListView, DetailView
-from .models import Profile,StatusMessage
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from .models import Profile,StatusMessage, Image
 from django.urls import reverse
-from .forms import CreateProfileForm, CreateStatusMessageForm
+from .forms import CreateProfileForm, CreateStatusMessageForm, UpdateProfileForm 
 from django.views.generic.edit import CreateView
 
 class ShowAllProfilesView(ListView):
@@ -36,27 +36,64 @@ class CreateProfileView(CreateView):
          # It redirects to the 'show_profile' page for the newly created profile.
         return reverse('show_profile', args=[self.object.pk])
 
+# View to create a new status message and handle image uploads
 class CreateStatusMessageView(CreateView):
-     # View to handle the creation of a new status message linked to a specific profile.
-    # It renders a form and saves the status message upon submission.
-    
     model = StatusMessage
     form_class = CreateStatusMessageForm
     template_name = 'mini_fb/create_status_form.html'
 
     def get_context_data(self, **kwargs):
+        # Add profile data to the context
         context = super().get_context_data(**kwargs)
         profile = Profile.objects.get(pk=self.kwargs['pk'])
         context['profile'] = profile
         return context
 
-   
     def form_valid(self, form):
-        # Override the form_valid method to set the profile for the status message before saving it.
-        profile = Profile.objects.get(pk=self.kwargs['pk'])
-        form.instance.profile = profile  
-        return super().form_valid(form)
+        # Save status message and handle associated image uploads
+        sm = form.save(commit=False)
+        sm.profile = get_object_or_404(Profile, pk=self.kwargs['pk'])
+        sm.save()
+
+        files = self.request.FILES.getlist('files')
+        for file in files:
+            image = Image(status_message=sm, image_file=file)
+            image.save()
+
+        return redirect('show_profile', pk=sm.profile.pk)
 
     def get_success_url(self):
-         # It redirects to the 'show_profile' page for the profile that the status message was added to.
+        # Redirect to the profile page after successful creation
         return reverse('show_profile', args=[self.kwargs['pk']])
+
+# View to update profile information
+class UpdateProfileView(UpdateView):
+    model = Profile
+    form_class = UpdateProfileForm
+    template_name = 'mini_fb/update_profile_form.html'
+
+    def get_success_url(self):
+        # Redirect to the profile page after profile update
+        return reverse('show_profile', args=[self.object.pk])
+
+# View to delete a status message
+class DeleteStatusMessageView(DeleteView):
+    model = StatusMessage
+    template_name = 'mini_fb/delete_status_form.html'
+    context_object_name = 'status_message'
+
+    def get_success_url(self):
+        # Redirect to the profile page after deleting the status message
+        profile_pk = self.object.profile.pk
+        return reverse('show_profile', args=[profile_pk])
+
+# View to update the content of a status message
+class UpdateStatusMessageView(UpdateView):
+    model = StatusMessage
+    fields = ['message']
+    template_name = 'mini_fb/update_status_form.html'
+
+    def get_success_url(self):
+        # Redirect to the profile page after updating the status message
+        profile_pk = self.object.profile.pk
+        return reverse('show_profile', args=[profile_pk])

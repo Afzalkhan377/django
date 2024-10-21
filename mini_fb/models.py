@@ -37,3 +37,15 @@ class StatusMessage(models.Model):
    
     def __str__(self):
         return f"{self.profile.first_name}'s status at {self.timestamp}: {self.message}"
+    def get_images(self):
+        return Image.objects.filter(status_message=self)
+    
+
+
+class Image(models.Model):
+    image_file = models.ImageField(upload_to='images/')
+    status_message = models.ForeignKey(StatusMessage, on_delete=models.CASCADE)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image {self.id} for {self.status_message.message}"
