@@ -9,6 +9,8 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.db.models import Q
+from django.contrib.auth.models import User
+
 class Profile(models.Model):
      # Fields for the Profile model, defining first name, last name, city, email, and profile image URL.
     first_name = models.CharField(max_length=50)
@@ -16,6 +18,8 @@ class Profile(models.Model):
     city = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     profile_image_url = models.URLField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  
+
 
     def __str__(self):
         # String representation of the Profile, returning the full name.

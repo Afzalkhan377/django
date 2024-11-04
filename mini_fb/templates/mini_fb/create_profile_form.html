@@ -5,7 +5,13 @@
 
     <form method="POST">
         {% csrf_token %}
+        
+        <h3>Account Details</h3>
+        {{ user_creation_form.as_p }} 
+        
+        <h3>Profile Details</h3>
         {{ form.as_p }} 
+        
         <button type="submit">Create Profile</button>
     </form>
 {% endblock %}

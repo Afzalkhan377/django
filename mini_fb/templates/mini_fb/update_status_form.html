@@ -1,15 +1,17 @@
 {% extends 'mini_fb/base.html' %}
 
 {% block content %}
-    <h2>Update Status Message</h2>
+    <div class="form-container">
+        <h2>Update Status Message</h2>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save changes</button>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-    <form action="{% url 'show_profile' object.profile.pk %}">
-        <button type="submit">Cancel</button>
-    </form>
+            <div class="button-group">
+                <button type="submit" class="btn save-btn">Save Changes</button>
+                <a href="{% url 'show_profile' object.profile.pk %}" class="btn cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}

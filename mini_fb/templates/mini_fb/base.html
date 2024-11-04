@@ -4,34 +4,37 @@
     Description: This is the base template for the Mini FB application. It defines the overall structure of the HTML pages, including links to CSS files. 
      -->
     
-    {% load static %} 
-    
-    <html lang="en">
-    <head>
-        <title>Mini FB</title> {# Page title #}
-        
+     {% load static %} 
+
+     <html lang="en">
+     <head>
+         <title>Mini FB</title> 
+         <link rel="stylesheet" href="{% static 'mini_fb/styles.css' %}">
+     </head>
+     <body>
+         <header>
+             <h1>Mini FB</h1>
+             <nav>
+                 <a href="{% url 'create_profile' %}" class="nav-link">Create a New Profile</a>
+                 <a href="{% url 'show_all_profiles' %}" class="nav-link">All Profiles</a>
+                 {% if user.is_authenticated %}
+                     <form method="post" action="{% url 'logout' %}" class="logout-form">
+                         {% csrf_token %}
+                         <button type="submit" class="nav-button">Logout</button>
+                     </form>
+                 {% else %}
+                     <a href="{% url 'login' %}" class="nav-link">Login</a>
+                 {% endif %}
+             </nav>
+         </header>
      
-        <link rel="stylesheet" href="{% static 'mini_fb/styles.css' %}">
-        
-    </head>
-    <body>
-        <header>
-            <h1>Mini FB</h1>
-            <nav>
-                <a href="{% url 'show_all_profiles' %}">All Profiles</a> |
-                <a href="{% url 'create_profile' %}">Create a New Profile</a>
-            </nav>
-        </header>
-    
-        <main>
-           
-            {% block content %}
-            {% endblock %}
-        </main>
-    
-        <footer>
-            <p>&copy; 2024 Mini FB</p> 
-        </footer>
-    </body>
-    </html>
-    
+         <main>
+             {% block content %}
+             {% endblock %}
+         </main>
+     
+         <footer>
+             <p>&copy; 2024 Mini FB</p> 
+         </footer>
+     </body>
+     </html>

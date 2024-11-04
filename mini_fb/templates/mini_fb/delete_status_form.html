@@ -3,13 +3,13 @@
 {% block content %}
     <h2>Are you sure you want to delete this status message?</h2>
 
-    <!-- Form to confirm deletion (POST request) -->
+   
     <form method="POST">
         {% csrf_token %}
         <button type="submit">Yes, delete</button>
     </form>
 
-    <!-- Form to cancel deletion (GET request back to profile page) -->
+   
     <form action="{% url 'show_profile' status_message.profile.pk %}">
         <button type="submit">Cancel</button>
     </form>
