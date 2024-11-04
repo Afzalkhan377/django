@@ -18,6 +18,10 @@
                  <a href="{% url 'create_profile' %}" class="nav-link">Create a New Profile</a>
                  <a href="{% url 'show_all_profiles' %}" class="nav-link">All Profiles</a>
                  {% if user.is_authenticated %}
+                 {% if user_profile %}
+                 <a href="{% url 'show_profile' user_profile.pk %}" class="nav-link">View My Profile</a>
+    {% endif %} 
+                    
                      <form method="post" action="{% url 'logout' %}" class="logout-form">
                          {% csrf_token %}
                          <button type="submit" class="nav-button">Logout</button>
@@ -38,3 +42,4 @@
          </footer>
      </body>
      </html>
+     

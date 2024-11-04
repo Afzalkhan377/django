@@ -19,18 +19,17 @@ class ShowAllProfilesView(ListView):
     model = Profile
     template_name = 'mini_fb/show_all_profiles.html'
     context_object_name = 'profiles'
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['user_profile'] = get_object_or_404(Profile, user=self.request.user)
+        return context
 class ShowProfilePageView(DetailView):
      # View to display a single profile using Django's DetailView.
     # It fetches a Profile object and renders it in the 'show_profile.html' template.
     model = Profile
     template_name = 'mini_fb/show_profile.html'  
     context_object_name = 'profile'
-
-
-
-from django.urls import reverse_lazy
-
 
 class CreateProfileView(CreateView):
     model = Profile
