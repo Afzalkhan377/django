@@ -1,0 +1,56 @@
+<div class="container">
+
+
+    <form method="get" action="{% if request.resolver_match.view_name == 'graphs' %}{% url 'graphs' %}{% else %}{% url 'voters' %}{% endif %}">
+      
+        <label for="party_affiliation">Party Affiliation:</label>
+        <select name="party_affiliation" id="party_affiliation">
+            <option value="">Any</option>
+            {% for party in party_affiliations %}
+                <option value="{{ party }}" {% if request.GET.party_affiliation == party %}selected{% endif %}>{{ party }}</option>
+            {% endfor %}
+        </select>
+
+
+        <label for="min_dob">Born After:</label>
+        <select name="min_dob" id="min_dob">
+            <option value="">Any</option>
+            {% for year in years %}
+                <option value="{{ year }}" {% if request.GET.min_dob == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="max_dob">Born Before:</label>
+        <select name="max_dob" id="max_dob">
+            <option value="">Any</option>
+            {% for year in years %}
+                <option value="{{ year }}" {% if request.GET.max_dob == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+
+
+        <label for="voter_score">Voter Score:</label>
+        <select name="voter_score" id="voter_score">
+            <option value="">Any</option>
+            {% for score in voter_scores %}
+                <option value="{{ score }}" {% if request.GET.voter_score == score|stringformat:"s" %}selected{% endif %}>{{ score }}</option>
+            {% endfor %}
+        </select>
+
+    
+        <label>Election Participation:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" name="v20state" {% if request.GET.v20state %}checked{% endif %}> 2020 State
+            <input type="checkbox" name="v21town" {% if request.GET.v21town %}checked{% endif %}> 2021 Town
+            <input type="checkbox" name="v21primary" {% if request.GET.v21primary %}checked{% endif %}> 2021 Primary
+            <input type="checkbox" name="v22general" {% if request.GET.v22general %}checked{% endif %}> 2022 General
+            <input type="checkbox" name="v23town" {% if request.GET.v23town %}checked{% endif %}> 2023 Town
+        </div>
+        
+    
+        <button type="submit">Filter</button>
+        <button type="reset" onclick="window.location.href='{% if request.resolver_match.view_name == 'graphs' %}{% url 'graphs' %}{% else %}{% url 'voters' %}{% endif %}'">Reset Filters</button>
+
+
+    </form>        
+

@@ -1,0 +1,61 @@
+{% extends "voter_analytics/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<html>
+<head>
+    <title>Voter List</title>
+    <link rel="stylesheet" href="{% static 'voter_analytics/styles.css' %}">
+</head>
+<body>
+    {% include 'voter_analytics/filter_form.html' %}
+
+               <table class="voter-table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>Date of Birth</th>
+                        <th>Party</th>
+                        <th>Voter Score</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for voter in voters %}
+                    <tr>
+                        <td><a href="{% url 'voter' voter.pk %}">{{ voter.first_name }}</a></td>
+                        <td><a href="{% url 'voter' voter.pk %}">{{ voter.last_name }}</a></td> 
+                        <td>{{ voter.street_number }} {{ voter.street_name }}</td>
+                        <td>{{ voter.date_of_birth }}</td>
+                        <td>{{ voter.party_affiliation }}</td>
+                        <td>{{ voter.voter_score }}</td>
+                        <td><a href="{% url 'voter' voter.pk %}" class="btn btn-info">View Details</a></td> 
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                {% if is_paginated %}
+                    <span>
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </span>
+                    
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                            Previous
+                        </a>
+                    {% endif %}
+                    
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                            Next
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>   
+    </body>
+    </html>
+{% endblock %}

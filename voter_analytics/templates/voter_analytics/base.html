@@ -1,0 +1,27 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Voter Analytics{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'voter_analytics/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h2 style="color: #2980b9;">Voter Analytics</h2> 
+        <nav>
+            <a href="{% url 'voters' %}" style="font-size: 18px; background-color: #3498db; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none;">All Voters</a>
+            <a href="{% url 'graphs' %}" style="font-size: 18px; background-color: #3498db; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-left: 10px;">View Graphs</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>© 2024 Voter Analytics</p>
+    </footer>
+</body>
+</html>
+

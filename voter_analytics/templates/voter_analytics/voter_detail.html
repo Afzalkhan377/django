@@ -1,0 +1,35 @@
+{% extends "voter_analytics/base.html" %}
+
+{% block content %}
+
+<html>
+<head>
+    <title>{{ voter.first_name }} {{ voter.last_name }} - Voter Details</title>
+</head>
+<body>
+    <h1>Voter Details for {{ voter.first_name }} {{ voter.last_name }}</h1>
+
+    <p><strong>Full Address:</strong> {{ voter.street_number }} {{ voter.street_name }} {{ voter.apartment_number }} {{ voter.zip_code }}</p>
+    <p><strong>Date of Birth:</strong> {{ voter.date_of_birth }}</p>
+    <p><strong>Registration Date:</strong> {{ voter.date_of_registration }}</p>
+    <p><strong>Party Affiliation:</strong> {{ voter.party_affiliation }}</p>
+    <p><strong>Precinct Number:</strong> {{ voter.precinct_number }}</p>
+    <p><strong>Voter Score:</strong> {{ voter.voter_score }}</p>
+
+    <h3>Election Participation</h3>
+    <ul>
+        <li>Voted in 2020 State Election: {{ voter.v20state }}</li>
+        <li>Voted in 2021 Town Election: {{ voter.v21town }}</li>
+        <li>Voted in 2021 Primary Election: {{ voter.v21primary }}</li>
+        <li>Voted in 2022 General Election: {{ voter.v22general }}</li>
+        <li>Voted in 2023 Town Election: {{ voter.v23town }}</li>
+    </ul>
+
+    
+    <p><a href="https://www.google.com/maps?q={{ voter.street_number }}+{{ voter.street_name }}+{{ voter.zip_code }}" target="_blank">View Address on Google Maps</a></p>
+
+    <a href="{% url 'voters' %}">Back to Voter List</a>
+
+</body>
+</html>
+{% endblock %}
