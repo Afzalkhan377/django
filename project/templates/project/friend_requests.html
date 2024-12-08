@@ -1,0 +1,25 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+<h2>Friend Requests</h2>
+
+{% if friend_requests %}
+    <ul>
+        {% for request in friend_requests %}
+            <li>
+                {{ request.sender.first_name }} {{ request.sender.last_name }} has sent you a friend request.
+                <form method="post" action="{% url 'project:project_accept_friend_request' request.pk %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Accept</button>
+                </form>
+                <form method="post" action="{% url 'project:project_decline_friend_request' request.pk %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Decline</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no pending friend requests.</p>
+{% endif %}
+{% endblock %}

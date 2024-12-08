@@ -1,0 +1,38 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+{% if post.lift_record %}
+{% if post.image %}
+    <img src="{{ post.image.url }}" alt="Post Image" class="post-image">
+    
+{% endif %}
+<p> </p>
+<h3 style="display: inline;">{{ post.user.first_name }} {{ post.user.last_name }}</h3> <p style="display: inline;">{{ post.lift_record.lift_type }} - {{ post.lift_record.weight }} lbs</p>
+
+    <p>{{ post.caption }} </p>
+{% endif %}
+
+<h3>Comments</h3>
+<ul>
+    {% for comment in post.comments.all %}
+        <li>
+            <strong>{{ comment.user.first_name }}:</strong> {{ comment.text }} <em>({{ comment.created_at }})</em>
+            {% if user.liftprofile == post.user or user.liftprofile == comment.user %}
+                <form method="post" action="{% url 'project:project_delete_comment' comment.pk %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No comments yet.</li>
+    {% endfor %}
+</ul>
+<h3>Add a Comment</h3>
+<form method="post" action="{% url 'project:project_add_comment' post.pk %}">
+    {% csrf_token %}
+    {{ comment_form.as_p }}  <!-- This will render the form fields properly -->
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
+
+{% endblock %}

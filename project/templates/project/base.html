@@ -1,0 +1,40 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>Fitness Social Media</title>
+    <link rel="stylesheet" href="{% static 'project/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Fitness Social Media</h1>
+        <nav>
+            {% if user.is_authenticated %}
+                {% if user.liftprofile %}
+                    <a href="{% url 'project:project_profile' user.liftprofile.pk %}" class="nav-link">My Profile</a>
+                    <a href="{% url 'project:project_friend_suggestions' %}" class="nav-link">Friend Suggestions</a>
+                    <a href="{% url 'project:project_leaderboard' %}" class="nav-link">Leaderboard</a>
+                    <a href="{% url 'project:project_friend_requests' %}" class="nav-link">Friend Requests</a>
+                    <a href="{% url 'project:project_home' %}" class="nav-link">All Profiles</a>
+                {% else %}
+                    <a href="{% url 'project:project_create_profile' %}" class="nav-link">Create Profile</a>
+                {% endif %}
+                <form method="post" action="{% url 'project:project_logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-button">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'project:project_login' %}" class="nav-link">Login</a>
+                <a href="{% url 'project:project_create_profile' %}" class="nav-link">Create Profile</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+<footer>
+    <p>&copy; 2024 Fitness Social Media</p>
+</footer>
+</html>

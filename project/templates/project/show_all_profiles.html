@@ -1,0 +1,46 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+<h2>All Profiles</h2>
+
+<!-- Search Form -->
+<div class="search-bar-container">
+    <form method="GET" action="{% url 'project:project_home' %}" class="search-bar-form">
+        <input type="text" name="q" placeholder="Search by first name..." 
+               value="{{ request.GET.q }}" class="search-bar-input">
+        <button type="submit" class="search-bar-button">Search</button>
+    </form>
+</div>
+
+<ul style="list-style: none; padding: 0;">
+    {% for profile in profiles %}
+        <li style="margin-bottom: 15px; display: flex; flex-direction: column; align-items: center;">
+            <!-- Display Profile Picture -->
+            <a href="{% url 'project:project_profile' profile.pk %}">
+           
+                    <img src="{{ profile.get_profile_picture }}" alt="{{ profile.first_name }}'s Profile Picture"
+                         class="profile-picture">
+                         <a href="{% url 'project:project_profile' profile.pk %}" style="text-align: center; font-weight: bold; margin-top: 8px;">
+                            {{ profile.first_name }} {{ profile.last_name }}
+                        </a>
+            
+
+            </a>
+
+            <!-- Display Friend Status -->
+            {% if user.is_authenticated and profile != user.liftprofile %}
+                {% if profile in user.liftprofile.get_friends %}
+                    <span style="color: green;">(Friend)</span>
+                {% else %}
+                    <span style="color: red;">(Not a Friend)</span>
+                {% endif %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<!-- No results found -->
+{% if not profiles %}
+    <p style="text-align: center; color: red; margin-top: 20px;">No profiles found.</p>
+{% endif %}
+{% endblock %}

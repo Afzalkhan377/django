@@ -1,0 +1,303 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7; /* Subtle background */
+    margin: 0;
+    padding: 0;
+    color: #333; /* Dark text for readability */
+}
+
+header {
+    background-color: #333; /* Dark header */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #444; /* Slightly lighter than the header */
+    padding: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #4CAF50; /* Vibrant green hover effect */
+}
+
+/* Buttons */
+button, .btn {
+    background-color: #4CAF50; /* Gym green for action buttons */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover, .btn:hover {
+    background-color: #3d8b40; /* Slightly darker green for hover */
+    transform: scale(1.05); /* Subtle hover scaling */
+}
+
+/* Profile Picture Styling */
+.profile-picture {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #4CAF50;
+    margin: 20px auto;
+    object-fit: cover; /* Ensures images fit well */
+}
+
+/* Section Headings */
+h2{
+    color: #4CAF50; /* Gym green for headings */
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+/* List and List Items */
+ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    display: flex; /* Use flexbox to align name and button */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Add space between name and button */
+    padding: 10px; /* Add spacing for each row */
+    margin: 5px 0; /* Add spacing between rows */
+    background-color: #f9f9f9; /* Light background for each row */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+}
+
+ul li:hover {
+    background-color: #ddd;
+}
+
+/* Footer */
+footer {
+    background-color: #333; /* Dark footer */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Forms */
+form {
+    max-width: 500px;
+  
+   
+    border-radius: 5px;
+    
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form button {
+    width: 100%;
+}
+
+/* Card Style for Posts and Profiles */
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Friend Buttons */
+.friend-buttons button {
+    margin: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    nav a {
+        margin: 5px 0;
+    }
+
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+.add-friend-btn {
+    padding: 5px 10px; /* Compact padding */
+    font-size: 12px; /* Adjust font size */
+    background-color: #28a745; /* Green color */
+    color: #fff; /* White text */
+    border: none; /* Remove border */
+    border-radius: 3px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.add-friend-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    ul li {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .add-friend-btn {
+        margin-top: 5px; /* Add space above the button */
+        width: 100%; /* Make button full width */
+    }
+}
+.notification-bubble {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 5px 10px;
+    position: relative;
+    top: -10px;
+    left: -5px;
+}
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.leaderboard-table th {
+    background-color: #4CAF50;
+    color: white;
+    text-transform: uppercase;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.leaderboard-table tr:hover {
+    background-color: #ddd;
+}
+/* Search Bar Container */
+.search-bar-container {
+    display: flex;
+    flex-direction: column; /* Stack input and button vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    gap: 10px; /* Space between input and button */
+    background-color: #f7f7f7; /* Light background */
+    padding: 20px; /* Padding around the container */
+    border-radius: 8px; /* Rounded corners for container */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 400px; /* Restrict maximum width */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Search Form */
+.search-bar-form {
+    width: 100%; /* Full width for form */
+}
+
+/* Search Input */
+.search-bar-input {
+    width: 100%; /* Take full width of container */
+    padding: 12px; /* Padding for better usability */
+    font-size: 16px; /* Larger font for readability */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar-input:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Subtle green glow */
+    outline: none; /* Remove default focus outline */
+}
+
+/* Search Button Container */
+.search-button-container {
+    width: 100%; /* Full width for the button */
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+}
+
+/* Search Button */
+.search-bar-button {
+    padding: 12px 20px; /* Padding for a comfortable click area */
+    font-size: 16px; /* Larger font for readability */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interaction */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-bar-button:hover {
+    background-color: #3d8b40; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.search-bar-button:active {
+    transform: translateY(0); /* Reset lift effect on click */
+}

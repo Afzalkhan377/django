@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'restaurant',
     'mini_fb',
     'voter_analytics',
+    'project',
     
     
 ]
@@ -137,4 +138,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/mini_fb/'
+LOGIN_REDIRECT_URL = '/project/'

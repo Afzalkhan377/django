@@ -1,0 +1,132 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+<!-- Profile Picture Section -->
+<img src="{{ profile.get_profile_picture }}" alt="Profile Picture" class="profile-picture">
+<h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
+{% if user.is_authenticated and user.liftprofile == profile %}
+    <div class="actions">
+       
+        <a href="{% url 'project:project_update_profile' profile.pk %}" class="btn">Update Profile</a>
+    </div>
+{% endif %}
+
+
+<p>City: {{ profile.city }}</p>
+<p>Email: {{ profile.email }}</p>
+
+<!-- Add Lift Log and Create Post Links -->
+{% if user.is_authenticated and user.liftprofile == profile %}
+    <div class="actions">
+        <a href="{% url 'project:project_create_lift_record' %}" class="btn">Add Lift Log</a>
+        <a href="{% url 'project:project_create_lift_post' %}" class="btn">Create Post</a>
+    </div>
+{% endif %}
+
+
+<!-- Friends Section -->
+<h3>Friends</h3>
+<ul>
+    {% for friend in profile.get_friends %}
+        <li>
+            <a href="{% url 'project:project_profile' friend.pk %}">{{ friend.first_name }} {{ friend.last_name }}</a>
+            {% if user.is_authenticated and user.liftprofile == profile and friend in user.liftprofile.get_friends %}
+                <form method="post" action="{% url 'project:project_unfriend' friend.pk %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Unfriend</button>
+                </form>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No friends yet.</li>
+    {% endfor %}
+</ul>
+<!-- Lift Records Section -->
+<h3>Lift Records</h3>
+{% if user.is_authenticated and user.liftprofile == profile %}
+    <!-- The user is viewing their own profile -->
+    <ul>
+        {% for record in profile.lift_records.all %}
+            <li>
+                {{ record.lift_type }}: {{ record.weight }} lbs on {{ record.date_recorded }}
+                <a href="{% url 'project:project_delete_lift_record' record.pk %}" class="btn btn-danger">Delete</a>
+            </li>
+        {% empty %}
+            <li>No lift records yet.</li>
+        {% endfor %}
+    </ul>
+{% elif user.is_authenticated and profile in user.liftprofile.get_friends %}
+    <!-- The user is viewing a friend's profile -->
+    <ul>
+        {% for record in profile.lift_records.all %}
+            <li>
+                {{ record.lift_type }}: {{ record.weight }} lbs on {{ record.date_recorded }}
+            </li>
+        {% empty %}
+            <li>No lift records yet.</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You must be friends with this user to view their lift records.</p>
+{% endif %}
+
+<!-- Posts Section -->
+<h3>Posts</h3>
+{% if user.is_authenticated and user.liftprofile == profile %}
+    <!-- The user is viewing their own profile -->
+    <ul>
+        {% for post in profile.lift_posts.all %}
+            <li>
+                <p>{{ post.caption }}</p>
+                {% if post.lift_record %}
+                    <p>Related Lift: {{ post.lift_record.lift_type }} - {{ post.lift_record.weight }} lbs</p>
+                {% endif %}
+                <a href="{% url 'project:project_post_detail' post.pk %}" class="btn">View Post</a>
+                <a href="{% url 'project:project_delete_post' post.pk %}" class="btn btn-danger">Delete Post</a>
+            </li>
+        {% empty %}
+            <li>No posts yet.</li>
+        {% endfor %}
+    </ul>
+{% elif user.is_authenticated and profile in user.liftprofile.get_friends %}
+    <!-- The user is viewing a friend's profile -->
+    <ul>
+        {% for post in profile.lift_posts.all %}
+            <li>
+                <p>{{ post.caption }}</p>
+                {% if post.lift_record %}
+                    <p>Related Lift: {{ post.lift_record.lift_type }} - {{ post.lift_record.weight }} lbs</p>
+                {% endif %}
+                <a href="{% url 'project:project_post_detail' post.pk %}" class="btn">View Post</a>
+            </li>
+        {% empty %}
+            <li>No posts yet.</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You must be friends with this user to view their posts.</p>
+{% endif %}
+{% if user.is_authenticated and user.liftprofile != profile %}
+    {% if is_friend %}
+        <p>You are friends with this user.</p>
+    {% elif received_request %}
+        <p>You have a pending friend request from this user.</p>
+        <form method="post" action="{% url 'project:project_accept_friend_request' friend_request.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Accept</button>
+        </form>
+        <form method="post" action="{% url 'project:project_decline_friend_request' friend_request.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Decline</button>
+        </form>
+        
+    {% elif sent_request %}
+        <p>Friend request sent.</p>
+    {% else %}
+        <form method="post" action="{% url 'project:project_send_friend_request' profile.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">Send Friend Request</button>
+        </form>
+    {% endif %}
+{% endif %}
+{% endblock %}

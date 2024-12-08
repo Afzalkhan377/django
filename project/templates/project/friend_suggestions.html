@@ -1,0 +1,31 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+<h2>Friend Suggestions for {{ user.liftprofile.first_name }}</h2>
+
+{% if friend_suggestions %}
+    <p>Here are some profiles you might want to connect with:</p>
+    <ul>
+        {% for profile in friend_suggestions %}
+            <li>
+                <div class="friend-suggestion">
+                    <p><strong>{{ profile.first_name }} {{ profile.last_name }}</strong></p>
+                    <p>City: {{ profile.city }}</p>
+                    {% if profile.id in sent_request_ids %}
+                        <p>Friend request sent.</p>
+                    {% else %}
+                        <form method="post" action="{% url 'project:project_send_friend_request' profile.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Send Friend Request</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </li>
+        {% empty %}
+            <p>No friend suggestions at the moment.</p>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No friend suggestions available at this time.</p>
+{% endif %}
+{% endblock %}

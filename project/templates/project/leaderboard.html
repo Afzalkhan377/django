@@ -1,0 +1,36 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+<table class="leaderboard-table">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Friend</th>
+            <th>Bench (lbs)</th>
+            <th>Squat (lbs)</th>
+            <th>Deadlift (lbs)</th>
+            <th>Total (lbs)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in leaderboard %}
+        <tr>
+            <td>{{ forloop.counter }}</td> <!-- Use forloop.counter for rank -->
+            <td>
+                <a href="{% url 'project:project_profile' data.friend.pk %}">
+                    {{ data.friend.first_name }} {{ data.friend.last_name }}
+                </a>
+            </td>
+            <td>{{ data.max_bench }}</td>
+            <td>{{ data.max_squat }}</td>
+            <td>{{ data.max_deadlift }}</td>
+            <td>{{ data.total }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No data available</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
