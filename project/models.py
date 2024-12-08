@@ -18,7 +18,7 @@ class LiftProfile(models.Model):
     city = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
-    profile_picture = models.ImageField(upload_to='images/profile_pictures/', blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='images/profile_pictures/')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.city})"

@@ -11,6 +11,7 @@ whitenoise = "*"
 psycopg2-binary = "*"
 pandas = "*"
 plotly = "*"
+pillow = "*"
 
 [dev-packages]
 
