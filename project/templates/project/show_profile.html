@@ -42,7 +42,7 @@
     {% endfor %}
 </ul>
 <!-- Lift Records Section -->
-<h3>Lift Records</h3>
+<h3>Lift Tracker</h3>
 {% if user.is_authenticated and user.liftprofile == profile %}
     <!-- The user is viewing their own profile -->
     <ul>
@@ -55,19 +55,7 @@
             <li>No lift records yet.</li>
         {% endfor %}
     </ul>
-{% elif user.is_authenticated and profile in user.liftprofile.get_friends %}
-    <!-- The user is viewing a friend's profile -->
-    <ul>
-        {% for record in profile.lift_records.all %}
-            <li>
-                {{ record.lift_type }}: {{ record.weight }} lbs on {{ record.date_recorded }}
-            </li>
-        {% empty %}
-            <li>No lift records yet.</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>You must be friends with this user to view their lift records.</p>
+
 {% endif %}
 
 <!-- Posts Section -->
