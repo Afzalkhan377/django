@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseForbidden
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.db.models import Max 
 
 class ShowAllProfilesView(LoginRequiredMixin, ListView):
     model = LiftProfile
@@ -279,7 +279,6 @@ class UnfriendView(LoginRequiredMixin, View):
         friendship.delete()
 
         return redirect('project:project_profile', pk=friend_profile.pk)
-from django.db.models import Max  # Ensure this import is at the top of your file
 
 class LeaderboardView(LoginRequiredMixin, TemplateView):
     template_name = "project/leaderboard.html"
