@@ -42,8 +42,8 @@
     {% endfor %}
 </ul>
 <!-- Lift Records Section -->
-<h3>Lift Tracker</h3>
 {% if user.is_authenticated and user.liftprofile == profile %}
+<h3>Lift Tracker</h3>
     <!-- The user is viewing their own profile -->
     <ul>
         {% for record in profile.lift_records.all %}
