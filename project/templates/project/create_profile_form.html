@@ -1,16 +1,21 @@
 {% extends "project/base.html" %}
 
 {% block content %}
-<h2>Create a New Profile</h2>
+<div class="center-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Create a New Profile</h2>
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <h3>Account Details</h3>
-    {{ user_creation_form.as_p }}
+    <form method="POST" enctype="multipart/form-data" style="width: 100%; max-width: 500px; font-size: 1.2rem;">
+        {% csrf_token %}
+        
+        <h3 style="font-size: 1.5rem; margin-bottom: 10px; text-align: left;">Account Details</h3>
+        {{ user_creation_form.as_p }}
 
-    <h3>Profile Details</h3>
-    {{ form.as_p }}
+        <h3 style="font-size: 1.5rem; margin-top: 20px; margin-bottom: 10px; text-align: left;">Profile Details</h3>
+        {{ form.as_p }}
 
-    <button type="submit">Create Profile</button>
-</form>
+        <button type="submit" style="margin-top: 20px; padding: 10px 20px; font-size: 1.2rem; background-color:green; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Create Profile
+        </button>
+    </form>
+</div>
 {% endblock %}

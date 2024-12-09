@@ -1,14 +1,20 @@
 {% extends "project/base.html" %}
 
 {% block content %}
-<h2>Login</h2>
+<div class="center-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Login</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p class="case-sensitive-note">* Both username and password are case-sensitive.</p>
-    <button type="submit">Login</button>
-</form>
+    <form method="POST" style="width: 100%; max-width: 500px; font-size: 1.2rem;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p class="case-sensitive-note" style="margin-top: 10px; font-size: 1rem; color: #666;">* Both username and password are case-sensitive.</p>
+        <button type="submit" style="margin-top: 15px; padding: 10px 20px; font-size: 1.2rem; background-color:green; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Login
+        </button>
+    </form>
 
-<p>Don't have an account? <a href="{% url 'project:project_create_profile' %}">Create a Profile</a></p>
+    <p style="margin-top: 20px; font-size: 1.2rem;">Don't have an account? 
+        <a href="{% url 'project:project_create_profile' %}" style="color: #007bff; text-decoration: underline;">Create a Profile</a>
+    </p>
+</div>
 {% endblock %}
