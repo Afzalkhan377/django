@@ -301,3 +301,12 @@ form button {
 .search-bar-button:active {
     transform: translateY(0); /* Reset lift effect on click */
 }
+.checkbox-clear-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Add spacing between the checkbox and label */
+}
+
+.checkbox-clear-container input[type="checkbox"] {
+    margin: 0;
+}

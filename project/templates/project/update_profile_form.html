@@ -1,11 +1,43 @@
 {% extends "project/base.html" %}
 
 {% block content %}
-<h2>Update Your Profile</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Update Profile</button>
-</form>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center;">
+    <h2 style="margin-bottom: 20px;">Update Your Profile</h2>
 
+    <form method="post" enctype="multipart/form-data" style="width: 100%; max-width: 500px; font-size: 1.2rem;">
+        {% csrf_token %}
+        
+        <!-- Display the current profile picture -->
+        <div style="margin-bottom: 20px; text-align: center;">
+            {% if form.profile_picture.value %}
+                <img src="{{ form.profile_picture.value.url }}" alt="Current Profile Picture" style="max-width: 200px; border-radius: 10px; margin-bottom: 10px;">
+            {% endif %}
+        </div>
+
+        <!-- Custom rendering for the profile_picture field -->
+        <div style="margin-bottom: 20px;">
+            <label for="id_profile_picture">Profile Picture:</label>
+            {{ form.profile_picture }}
+
+            <!-- Align the Clear checkbox -->
+            {% if form.profile_picture.clear_checkbox %}
+            <div style="display: flex; align-items: center; gap: 5px; margin-top: 10px;">
+                {{ form.profile_picture.clear_checkbox }}
+                <label for="id_profile_picture-clear">Clear</label>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Render other fields using form.as_p -->
+        {{ form.first_name.label_tag }} {{ form.first_name }}
+        {{ form.last_name.label_tag }} {{ form.last_name }}
+        {{ form.city.label_tag }} {{ form.city }}
+        {{ form.email.label_tag }} {{ form.email }}
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary" style="padding: 10px 20px; font-size: 1.2rem; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">
+            Update Profile
+        </button>
+    </form>
+</div>
 {% endblock %}
