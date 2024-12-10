@@ -1,39 +1,55 @@
 {% extends "project/base.html" %}
 
 {% block content %}
-{% if post.lift_record %}
-{% if post.image %}
-<div style="display: flex; justify-content: center; align-items: center;">
-    <img src="{{ post.image.url }}" alt="Post Image" class="post-image" style="max-width: 100%; height: auto; display: block;">
-</div>
-{% endif %}
-<p> </p>
-<h3 style="display: inline;">{{ post.user.first_name }} {{ post.user.last_name }}</h3> <p style="display: inline;">{{ post.lift_record.lift_type }} - {{ post.lift_record.weight }} lbs</p>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; font-family: Arial, sans-serif;">
 
-    <p>{{ post.caption }} </p>
-{% endif %}
+    <!-- Display the Post Image -->
+    {% if post.lift_record %}
+    {% if post.image %}
+    <div style="margin-bottom: 20px; max-width: 400px; border-radius: 10px; overflow: hidden;">
+        <img src="{{ post.image.url }}" alt="Post Image" style="width: 100%; height: auto; border-radius: 10px;">
+    </div>
+    {% endif %}
 
-<h3>Comments</h3>
-<ul>
-    {% for comment in post.comments.all %}
-        <li>
-            <strong>{{ comment.user.first_name }}:</strong> {{ comment.text }} <em>({{ comment.created_at }})</em>
-            {% if user.liftprofile == post.user or user.liftprofile == comment.user %}
+    <!-- User Info -->
+    <h3 style="margin: 0; font-size: 1.5rem; color: #333;">{{ post.user.first_name }} {{ post.user.last_name }}</h3>
+    <p style="margin: 5px 0; font-size: 1.2rem; color: #666;">{{ post.lift_record.lift_type }} - {{ post.lift_record.weight }} lbs</p>
+
+    <!-- Caption -->
+    <p style="margin-top: 10px; font-size: 1.1rem; color: #555;">{{ post.caption }}</p>
+    {% endif %}
+
+    <!-- Comments Section -->
+    <div style="width: 100%; max-width: 600px; text-align: left; margin-top: 30px;">
+        <h3 style="font-size: 1.5rem; color: #333; border-bottom: 2px solid #28a745; padding-bottom: 5px;">Comments</h3>
+        <ul style="list-style: none; padding: 0;">
+            {% for comment in post.comments.all %}
+            <li style="margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+                <strong style="color: #28a745;">{{ comment.user.first_name }}:</strong>
+                <span style="color: #555;">{{ comment.text }}</span> 
+                
+                {% if user.liftprofile == post.user or user.liftprofile == comment.user %}
                 <form method="post" action="{% url 'project:project_delete_comment' comment.pk %}" style="display: inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger" style="font-size: 0.8rem; padding: 5px 10px;">Delete</button>
                 </form>
-            {% endif %}
-        </li>
-    {% empty %}
-        <li>No comments yet.</li>
-    {% endfor %}
-</ul>
-<h3>Add a Comment</h3>
-<form method="post" action="{% url 'project:project_add_comment' post.pk %}">
-    {% csrf_token %}
-    {{ comment_form.as_p }}  <!-- This will render the form fields properly -->
-    <button type="submit" class="btn btn-primary">Add Comment</button>
-</form>
+                {% endif %}
+            </li>
+            {% empty %}
+            <li style="color: #777;">No comments yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
 
+    <!-- Add a Comment Section -->
+    <div style="width: 100%; max-width: 600px; text-align: left; margin-top: 30px;">
+        <h3 style="font-size: 1.5rem; color: #333; border-bottom: 2px solid #28a745; padding-bottom: 5px;">Add a Comment</h3>
+        <form method="post" action="{% url 'project:project_add_comment' post.pk %}" style="margin-top: 10px;">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 10px; font-size: 1.1rem; background-color: #28a745; color: white; border: none; border-radius: 5px;">Add Comment</button>
+        </form>
+    </div>
+
+</div>
 {% endblock %}
