@@ -3,8 +3,9 @@
 {% block content %}
 {% if post.lift_record %}
 {% if post.image %}
-    <img src="{{ post.image.url }}" alt="Post Image" class="post-image">
-    
+<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="{{ post.image.url }}" alt="Post Image" class="post-image" style="max-width: 100%; height: auto; display: block;">
+</div>
 {% endif %}
 <p> </p>
 <h3 style="display: inline;">{{ post.user.first_name }} {{ post.user.last_name }}</h3> <p style="display: inline;">{{ post.lift_record.lift_type }} - {{ post.lift_record.weight }} lbs</p>
