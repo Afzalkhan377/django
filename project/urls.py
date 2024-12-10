@@ -2,7 +2,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from . import views
-from .views import FriendSuggestionsView,AddCommentView,DeleteCommentView,SendFriendRequestView, AcceptFriendRequestView, DeclineFriendRequestView, FriendRequestsView, UnfriendView,LeaderboardView
+from .views import FriendSuggestionsView,AddCommentView,FriendsPostsView,DeleteCommentView,SendFriendRequestView, AcceptFriendRequestView, DeclineFriendRequestView, FriendRequestsView, UnfriendView,LeaderboardView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,7 +26,7 @@ urlpatterns = [
     path('post/<int:pk>/add-comment/', AddCommentView.as_view(), name='project_add_comment'),
     path('comment/delete/<int:pk>/', DeleteCommentView.as_view(), name='project_delete_comment'),
     path('friend-requests/', FriendRequestsView.as_view(), name='project_friend_requests'),
-
+    path('friends-posts/', FriendsPostsView.as_view(), name='friends_posts'),
     path('send-friend-request/<int:pk>/', SendFriendRequestView.as_view(), name='project_send_friend_request'),
     path('accept-friend-request/<int:pk>/', AcceptFriendRequestView.as_view(), name='project_accept_friend_request'),
     path('decline-friend-request/<int:pk>/', DeclineFriendRequestView.as_view(), name='project_decline_friend_request'),

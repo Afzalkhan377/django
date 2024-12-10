@@ -318,3 +318,13 @@ class LeaderboardView(LoginRequiredMixin, TemplateView):
 
         context["leaderboard"] = leaderboard_data
         return context
+
+class FriendsPostsView(LoginRequiredMixin, ListView):
+    model = LiftPost
+    template_name = 'project/friends_posts.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        user_profile = self.request.user.liftprofile
+        friends = user_profile.get_friends()  # Use the `get_friends` method from your model
+        return LiftPost.objects.filter(user__in=friends).order_by('-created_at')  # Filter posts by friends and order by latest

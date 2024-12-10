@@ -1,0 +1,38 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center;">
+    <h2 style="margin-bottom: 20px;">Friends' Posts</h2>
+
+    {% if posts %}
+        <div style="width: 100%; max-width: 800px; margin: 0 auto;">
+            {% for post in posts %}
+                <a href="{% url 'project:project_post_detail' post.pk %}" style="text-decoration: none; color: inherit;">
+                    <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; transition: box-shadow 0.3s; cursor: pointer;">
+                        <!-- User Info -->
+                        <h3 style="margin: 0; font-size: 1.2rem; color: #333;">{{ post.user.first_name }} {{ post.user.last_name }}</h3>
+                        <p style="margin: 5px 0; font-size: 1rem; color: #666;">{{ post.created_at|date:"M d, Y" }}</p>
+
+                        <!-- Post Image -->
+                        {% if post.image %}
+                            <div style="margin-top: 10px;">
+                                <img src="{{ post.image.url }}" alt="Post Image" style="width: 100%; max-width: 400px; height: auto; border-radius: 10px;">
+                            </div>
+                        {% endif %}
+
+                        <!-- Caption -->
+                        <p style="margin-top: 10px; font-size: 1rem; color: #555;">{{ post.caption }}</p>
+
+                        <!-- Lift Record (if exists) -->
+                        {% if post.lift_record %}
+                            <p style="font-size: 1rem; color: #333;">{{ post.lift_record.lift_type }} - {{ post.lift_record.weight }} lbs</p>
+                        {% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="color: #777;">You have no friends' posts to display.</p>
+    {% endif %}
+</div>
+{% endblock %}

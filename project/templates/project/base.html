@@ -16,6 +16,8 @@
                     <a href="{% url 'project:project_leaderboard' %}" class="nav-link">Leaderboard</a>
                     <a href="{% url 'project:project_friend_requests' %}" class="nav-link">Friend Requests</a>
                     <a href="{% url 'project:project_home' %}" class="nav-link">All Profiles</a>
+                    <a href="{% url 'project:friends_posts' %}">Friends' Posts</a>
+
                 {% else %}
                     <a href="{% url 'project:project_create_profile' %}" class="nav-link">Create Profile</a>
                 {% endif %}
