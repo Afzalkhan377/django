@@ -6,10 +6,10 @@ from .views import FriendSuggestionsView,AddCommentView,DeleteCommentView,SendFr
 from django.conf import settings
 from django.conf.urls.static import static
 
-app_name = 'project'  # Adding app namespace
+app_name = 'project' 
 
 urlpatterns = [
-    # Core URLs
+
     path('', views.ShowAllProfilesView.as_view(), name='project_home'),
     path('profile/<int:pk>/', views.ShowProfilePageView.as_view(), name='project_profile'),
     path('create-profile/', views.CreateProfileView.as_view(), name='project_create_profile'),
@@ -22,7 +22,7 @@ urlpatterns = [
     path('delete-post/<int:pk>/', views.DeletePostView.as_view(), name='project_delete_post'),
     path('friend-suggestions/', FriendSuggestionsView.as_view(), name='project_friend_suggestions'),
     path('profile/update/<int:pk>/', views.UpdateProfileView.as_view(), name='project_update_profile'),
-    # Authentication URLs
+
     path('post/<int:pk>/add-comment/', AddCommentView.as_view(), name='project_add_comment'),
     path('comment/delete/<int:pk>/', DeleteCommentView.as_view(), name='project_delete_comment'),
     path('friend-requests/', FriendRequestsView.as_view(), name='project_friend_requests'),

@@ -31,7 +31,7 @@ class LiftProfile(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.city})"
     def get_friends(self):
-        # Assuming you have a `Friend` model with fields `profile1` and `profile2`
+      
         friend_relationships = Friend.objects.filter(
             models.Q(profile1=self) | models.Q(profile2=self)
         )
@@ -86,7 +86,7 @@ class LiftPost(models.Model):
     caption = models.TextField()
     lift_record = models.ForeignKey(LiftRecord, null=True, blank=True, on_delete=models.SET_NULL, related_name='posts')
     created_at = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='post_images/', blank=True, null=True)  # New field for post images
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True) 
 
     def __str__(self):
         return f"Post by {self.user.first_name} on {self.created_at}"
